@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+		<head>
+		<meta charset="utf-8">
+		<meta name="keywords" content="Html日历插件，Html精美日历插件，Jquery多功能日历插件" />
+		<meta name="description" content="Html日历插件，多功能" />
+		<title>Html日历插件</title>
+		<link type="text/css" href="css/base.css" rel="stylesheet"></link>
+		<script src="http://www.pengyaou.com/jquery-1.4.min.js"></script>
+		<script src="js/zackCalendar.js"></script>
+		
+		</head>
+		<body>
+		    <div id="calendar" style="width:500px;margin:0 auto;"></div>		
+        </body>
+		
+		<script type="text/javascript">
+		$(function() {
+			$('#calendar').html(zackCalen);
+			CalendarHandler.initialize();		
+		});
+
+		
+		</script>
+</html>
