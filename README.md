@@ -1,2 +1,2 @@
 # zackCalendar
-a smiple falt Calendar,NOT a date picker.
+A smiple float Calendar,NOT a date picker.
