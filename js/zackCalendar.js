@@ -62,6 +62,8 @@ var CalendarHandler = {
 		});
 		$(".currentItem>a").css("margin-left", ($(".item").width() - 25) / 2 + "px").css("margin-top", ($(".item").height() - 25) / 2 + "px");
 		$(".week>h3").css("width", $(".week").width() / 7 + "px");
+
+		this.focus();
 	},			
 	IsRuiYear: function(aDate) {
 		return (0 == aDate % 4 && (aDate % 100 != 0 || aDate % 400 == 0));
@@ -128,7 +130,7 @@ var CalendarHandler = {
 
 		//生成当月的日期
 		for (var i = 0; i < nowDaysNub; i++) {
-			if (i == (nowDay - 1)) $dayItem.append("<div class=\"item currentItem\"><a>" + (i + 1) + "</a></div>");
+			if (i == (nowDay - 1)) $dayItem.append("<div class=\"item currentItem\"><a class=\"cua\">" + (i + 1) + "</a></div>");
 			else $dayItem.append("<div class=\"item\"><a>" + (i + 1) + "</a></div>");
 		}
 
@@ -150,6 +152,7 @@ var CalendarHandler = {
 			"line-height": itemPaddintTop + "px",
 			"height": itemPaddintTop + "px"
 		});
+		
 		$(".currentItem>a").css("margin-left", ($(".item").width() - 25) / 2 + "px").css("margin-top", ($(".item").height() - 25) / 2 + "px");
 	},
 	CalculateNextMonthDays: function() {
@@ -172,6 +175,7 @@ var CalendarHandler = {
 				$(this).remove();
 				CalendarHandler.isRunning = false;
 			});
+			this.focus();
 		}
 	},
 	CalculateLastMonthDays: function() {
@@ -195,7 +199,8 @@ var CalendarHandler = {
 				$(this).remove();
 				CalendarHandler.isRunning = false;
 			});
-		}
+			this.focus();
+		}		
 	},
 	CreateCurrentCalendar: function() {
 		if (this.isRunning == false) {
@@ -213,8 +218,25 @@ var CalendarHandler = {
 			$("#centerMain").animate({
 				marginLeft: -$("#center").width() + "px"
 			}, 500);
-		}
+		}		
+		this.focus();
 	},	
+
+	//点击日期聚焦 ajax goes here
+	focus:function(){
+        $('.dayItem').find('.item').each(function(){
+		    $(this).click(function(){
+		        $('.dayItem').find('.item').removeClass('currentItem');
+		        $('.item').find('a').css({'margin':'0'});
+		        $(this).addClass('currentItem');
+		        $(".currentItem>a").css("margin-left", ($(".item").width() - 25) / 2 + "px").css("margin-top", ($(".item").height() - 25) / 2 + "px");
+
+		        $.ajax({
+		        	success:function(){
+		        		//alert('ajax goes here');
+		        	}
+		        });
+		    });
+		});
+	}
 }
-
-
