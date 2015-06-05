@@ -231,9 +231,16 @@ var CalendarHandler = {
 		        $(this).addClass('currentItem');
 		        $(".currentItem>a").css("margin-left", ($(".item").width() - 25) / 2 + "px").css("margin-top", ($(".item").height() - 25) / 2 + "px");
 
+		        var selDate = '';
+		        var selYear = $('.selectYear').html();
+		        var selMonth = $('.selectMonth').html();
+		        var selDay = $('.currentItem>a').html();
+		        selDate += selYear + selMonth + selDay +'日';
+		        //console.log(selDate);
+
 		        $.ajax({
 		        	success:function(){
-		        		//alert('ajax goes here');
+		        		//alert(selDate);
 		        	}
 		        });
 		    });
